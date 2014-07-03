@@ -11,7 +11,8 @@
 
 
 /**
- <#Description#>
+ <#Memoria() es uma especie de "Constructor" que permite inicializar variables#>
+ <#Modifica: Inicializa la memoria, los archivos, y otras variables requeridas#>
  @param  <# description#>
  */
 void Memoria(){
@@ -21,18 +22,23 @@ void Memoria(){
     tamanoDePagina = 80*22;
     prompt = "root@BalazOS$ ";
     
-    //Inicializo la memoria en 0
+    //Inicializo la memoria en 0 = vacio
     for ( int i =0; i<80*22*10; i++){
         memoria [i] = 0;
     }
     
+    //Inicializo los archivos en 0 = vacio
     for (int i =0 ; i<10; i++) {
         archivos[i] = 0     ;
     }
-    numProcs =0;
+    numProcs =0; 
 }
 
-//Obtiene los caracteres de pantalla y los agrega a memoria
+/**
+ <#Obtiene los caracteres de pantalla y los agrega a memoria#>
+ <#Modifica: La memoria y la tabla de archivos#>
+ @param  <# description#>
+ */
 void asignar(unsigned char * datosProc, int size, int inicio /*int hueco*/){
     int j=0;
     for (int i=0; i<size; i++) {
@@ -40,10 +46,15 @@ void asignar(unsigned char * datosProc, int size, int inicio /*int hueco*/){
         j += 2;
         //Salta de uno de por medio para obtener solamente los caracteres en la memoria de video.
     }
+    //los archivos se agregan a la tabla de archivos segun su ubicacion de incio
     agregarATabla(inicio);
 }
 
-
+/**
+ <#Pemirte almacenar los archivos en la tabla de archivo#>
+ <#Modifica: La tabla de archivos#>
+ @param  <#EL inicio corresponde al numero de archivo que corresponde agregar#>
+ */
 void agregarATabla(int inicio){
     if (numProcs < 10) {
         archivos[numProcs]= inicio  ;
