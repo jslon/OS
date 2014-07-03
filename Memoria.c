@@ -13,6 +13,7 @@
 /**
  Memoria() es una especie de "Constructor" que permite inicializar variables.
  Modifica: Inicializa la memoria, los archivos, y otras variables requeridas.
+ @param  N/A
  */
 void Memoria(){
     
@@ -74,7 +75,7 @@ void liberarMemoria(int numeroArchivo){
 
 /**
  Despliega el archivo almacenado en memoria.
- @param noArchivo Es el numero que corresponde a la tupla en la tabla de procesos.
+ @param N/A 
  */
 void open(){
     char *memoriaPtr = &memoria[numArchivo*tamanoDePagina];  //es un puntero a memoria donde esta el archivo
