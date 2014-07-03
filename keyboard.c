@@ -11,7 +11,7 @@
 
 
 /**
- Editor de Texto
+ * Abre el editor de texto. 
  @param  N/A
  */
 void write(){
@@ -23,8 +23,8 @@ void write(){
 }
 
 /**
- Editor de Texto
- @param  N/A
+ Carga el editor de texto con el archivo dado.
+ @param  n = es el numero del archivo que se quiere cargar.
  */
 
 void load(int n){
@@ -36,14 +36,14 @@ void load(int n){
 }
 
 /**
- Copia lo que se encuentra entre las lineas 3 y 24 a la memoria mediante el algoritmo bestFit y vuelve al modo consola.
+ Copia lo que se encuentra entre las lineas 3 y 24 y lo (re)asigna a la memoria y vuelve al modo consola.
  @param  N/A
  */
 void guardarYSalir(){
     unsigned char *vidmem = (unsigned char *)0xB8000+(80*2);
     if (banderaCons == 1) {      //si esta en write
         //bestFit(vidmem, tamanoDePagina);
-        asignar(vidmem, tamanoDePagina, numArchivo * tamanoDePagina);
+        asignar(vidmem, tamanoDePagina, numArchivo * tamanoDePagina); //asigna la memoria
         clrscr();
         printStr("Archivo guardado");
         
@@ -57,8 +57,8 @@ void guardarYSalir(){
 }
 
 /**
- <#Description#>
- @param  <# description#>
+ Sale del editor de texto sin guardar los cambios.
+ @param  N/A
  */
 void salir(){
     if (banderaCons == 1) {
@@ -69,10 +69,11 @@ void salir(){
     }
 }
 
-//Teclas especiales
+//Teclas especiales para moverse en pantalla
+
 /**
- 
- @param  <# description#>
+ Hace un enter o cambio de linea para escribir o leer comandos
+ @param  N/A
  */
 void enter(){
     unsigned short offset;
@@ -118,8 +119,8 @@ void reubicarCursor(){
 */
 
 /**
- <#Description#>
- @param  <# description#>
+ Mueve a la izaquierda una posicion el cursor
+ @param  N/A
  */
 void left(){
     unsigned short offset;
@@ -136,8 +137,8 @@ void left(){
 }
 
 /**
- <#Description#>
- @param  <# description#>
+ Mueve a la derecha una posicion el cursor
+ @param  N/A
  */
 void right(){
     unsigned short offset;
@@ -154,10 +155,9 @@ void right(){
 }
 
 /**
- <#Description#>
- @param  <# description#>
- */
-void up(){
+ Mueve hacia arriba una posicion el cursor
+ @param  N/A
+ */up(){
     unsigned short offset;
     // Read cursor position
     out(0x3D4, 14);
@@ -172,8 +172,8 @@ void up(){
 }
 
 /**
- <#Description#>
- @param  <# description#>
+ Mueve hacia abajo una posicion el cursor
+ @param  N/A
  */
 void down(){
     unsigned short offset;
@@ -190,8 +190,9 @@ void down(){
 }
 
 /**
- <#Description#>
- @param  <# description#>
+/**
+ Identico al return, elimina el caracter antes del cursor
+ @param  N/A
  */
 void borrar(){
     unsigned short offset;
@@ -222,11 +223,11 @@ void borrar(){
     indiceBuffer--;
 }
 
-//Lectura de comandos
+//Lectura de comandos especiales de consola
 
 /**
- <#Description#>
- @param  <# description#>
+ Lee comandos escritos en consola se reconocen: write, load#, shutdown
+ @param  N/A
  */
 void comandos(){
     //write
@@ -326,7 +327,10 @@ unsigned char kbdus[128] =
 };
 
 
-// Maneja la interrupción del teclado
+/**
+ Maneja la interrupción del teclado
+ @param  N/A
+ */
 void keyboard_handler() {
     unsigned char scancode;
     
