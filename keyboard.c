@@ -9,11 +9,6 @@
 #include <stdio.h>
 #include "system.h"
 
-
-/**
- Editor de Texto
- @param  N/A
- */
 void write(){
     banderaCons = 1;
     banderaArch = 0;
@@ -22,27 +17,19 @@ void write(){
     enter();
 }
 
-/**
- Editor de Texto
- @param  N/A
- */
 
 void load(int n){
     write();
     numArchivo = n;
     banderaArch = 1;
     open();
-    
 }
 
-/**
- Copia lo que se encuentra entre las lineas 3 y 24 a la memoria mediante el algoritmo bestFit y vuelve al modo consola.
- @param  N/A
+/* Copia lo que se encuentra entre las lineas 3 y 24 a la memoria mediante el algoritmo bestFit y vuelve al modo consola.
  */
 void guardarYSalir(){
     unsigned char *vidmem = (unsigned char *)0xB8000+(80*2);
     if (banderaCons == 1) {      //si esta en write
-        //bestFit(vidmem, tamanoDePagina);
         asignar(vidmem, tamanoDePagina, numArchivo * tamanoDePagina);
         clrscr();
         printStr("Archivo guardado");
@@ -56,10 +43,6 @@ void guardarYSalir(){
     }
 }
 
-/**
- <#Description#>
- @param  <# description#>
- */
 void salir(){
     if (banderaCons == 1) {
         clrscr();
@@ -70,10 +53,6 @@ void salir(){
 }
 
 //Teclas especiales
-/**
- 
- @param  <# description#>
- */
 void enter(){
     unsigned short offset;
     unsigned int nlinea;
@@ -117,10 +96,7 @@ void reubicarCursor(){
 }
 */
 
-/**
- <#Description#>
- @param  <# description#>
- */
+
 void left(){
     unsigned short offset;
     // Read cursor position
@@ -135,10 +111,7 @@ void left(){
     out(0x3D5, (unsigned char)(offset >> 8));
 }
 
-/**
- <#Description#>
- @param  <# description#>
- */
+
 void right(){
     unsigned short offset;
     // Read cursor position
@@ -153,10 +126,7 @@ void right(){
     out(0x3D5, (unsigned char)(offset >> 8));
 }
 
-/**
- <#Description#>
- @param  <# description#>
- */
+
 void up(){
     unsigned short offset;
     // Read cursor position
@@ -171,10 +141,7 @@ void up(){
     out(0x3D5, (unsigned char)(offset >> 8));
 }
 
-/**
- <#Description#>
- @param  <# description#>
- */
+
 void down(){
     unsigned short offset;
     // Read cursor position
@@ -189,10 +156,7 @@ void down(){
     out(0x3D5, (unsigned char)(offset >> 8));
 }
 
-/**
- <#Description#>
- @param  <# description#>
- */
+
 void borrar(){
     unsigned short offset;
     // Read cursor position
@@ -224,10 +188,6 @@ void borrar(){
 
 //Lectura de comandos
 
-/**
- <#Description#>
- @param  <# description#>
- */
 void comandos(){
     //write
     if(kbd_buffer[0]== 'w'){
@@ -249,8 +209,6 @@ void comandos(){
                 if (kbd_buffer[3] == 'd') {
                     if (0 < kbd_buffer[4] < 10) {
                         load((int)kbd_buffer[4]-48);
-                        //write();
-                        //open();
                         indiceBuffer = 0;
                     }
                 }

@@ -9,17 +9,12 @@
 #include <stdio.h>
 #include "system.h"
 
-
-/**
- <#Description#>
- @param  <# description#>
- */
 void Memoria(){
     
     banderaCons = 0;
     banderaArch = 0;
     tamanoDePagina = 80*22;
-    prompt = "root@BalazOS$ ";
+    prompt = "root@OS$ ";
     
     //Inicializo la memoria en 0
     for ( int i =0; i<80*22*10; i++){

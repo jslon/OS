@@ -6,7 +6,7 @@ void principal() {
     
     Memoria();      //inicializo la memoria
     clrscr();       //limpio la pantalla
-    printStr("Bienvenido a BalazOS");
+    printStr("Bienvenido a OS");
     enter();
     instalarInterrupciones();
     
