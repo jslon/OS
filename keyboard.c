@@ -20,7 +20,7 @@ void write(){
 
 void load(int n){
     write();
-    numArchivo = n;
+    nArchivoACargar = n;
     banderaArch = 1;
     open();
 }
@@ -29,8 +29,11 @@ void load(int n){
  */
 void guardarYSalir(){
     unsigned char *vidmem = (unsigned char *)0xB8000+(80*2);
-    if (banderaCons == 1) {      //si esta en write
-        asignar(vidmem, tamanoDePagina, numArchivo * tamanoDePagina);
+    if (banderaCons == 1) {         //si esta en write
+        
+        //(banderaArch == 1) ? asignar(vidmem, tamanoDePagina, nArchivoACargar * tamanoDePagina) : asignar(vidmem, tamanoDePagina, numArchivo * tamanoDePagina);
+        
+        
         clrscr();
         printStr("Archivo guardado");
         

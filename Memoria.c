@@ -14,6 +14,8 @@ void Memoria(){
     banderaCons = 0;
     banderaArch = 0;
     tamanoDePagina = 80*22;
+    numArchivo = 0;
+    nArchivoACargar = 0;
     prompt = "root@OS$ ";
     
     //Inicializo la memoria en 0
@@ -24,14 +26,14 @@ void Memoria(){
     for (int i =0 ; i<10; i++) {
         archivos[i] = 0     ;
     }
-    numProcs =0;
+    
 }
 
 //Obtiene los caracteres de pantalla y los agrega a memoria
-void asignar(unsigned char * datosProc, int size, int inicio /*int hueco*/){
+void asignar(unsigned char * datosArch, int size, int inicio){
     int j=0;
     for (int i=0; i<size; i++) {
-        memoria[i+inicio]=datosProc[j];
+        memoria[i+inicio]=datosArch[j];
         j += 2;
         //Salta de uno de por medio para obtener solamente los caracteres en la memoria de video.
     }
@@ -40,9 +42,9 @@ void asignar(unsigned char * datosProc, int size, int inicio /*int hueco*/){
 
 
 void agregarATabla(int inicio){
-    if (numProcs < 10) {
-        archivos[numProcs]= inicio  ;
-        numProcs ++                 ;
+    if (numArchivo < 10) {
+        archivos[numArchivo] = inicio;
+        numArchivo ++;
     }
     else{
         clrscr();
@@ -62,8 +64,8 @@ void liberarMemoria(int numeroArchivo){
  @param noArchivo Es el numero que corresponde a la tupla en la tabla de procesos
  */
 void open(){
-    char *memoriaPtr = &memoria[numArchivo*tamanoDePagina];
-    int inicio  = archivos[numArchivo*tamanoDePagina];
+    char *memoriaPtr = &memoria[nArchivoACargar*tamanoDePagina];
+    int inicio  = archivos[nArchivoACargar];
     
     for (int i = inicio; i < inicio+tamanoDePagina; i++) {
         printCh(memoriaPtr+i);

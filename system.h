@@ -13,7 +13,7 @@ int banderaCons;        //Si está 0 = Consola, 1 = editor de texto.
 int banderaArch;        //Si está en 0 = archivo nuevo si esta en 1 es un archivo siendo modificado
 int tamanoDePagina;
 char * prompt;
-int numArchivo;
+int nArchivoACargar;
 
 //char *prompt = "admin@Balazos:";
 
@@ -85,7 +85,7 @@ extern void up();
 extern void down();
 extern void guardarYSalir();
 extern void write();
-extern void load(int numArchivo);
+extern void load(int numArchivoACargar);
 //extern void reubicarCursor();
 
 //PORTS.C
@@ -93,13 +93,12 @@ extern unsigned char in();
 extern unsigned char out();
 
 //VIDEO.C
-#define MAX_KEYS 0x100
 #define MAX_LINE 200
 extern void clrscr();
 extern void printCh(const char *);
 extern void printStr(const char *);
 extern void printInt(int);
-char kbd_buffer[MAX_KEYS];
+char kbd_buffer[10];
 int indiceBuffer;
 char resultado[5];
 
@@ -107,9 +106,9 @@ char resultado[5];
 #define INT32_MAX 0x7fffffff;
 char memoria [80*22*10];   //memoria total = 17600 b
 int archivos[10];           // 1 = hay un archivo, 0 = está vacio
-int numProcs;   //numero de procesos actualemente en memoria.
+int numArchivo;   //numero de archivos actualemente en memoria.
 extern void Memoria();
-extern void asignar(unsigned char * datosProc, int size, int inicio);
+extern void asignar(unsigned char * datosArch, int size, int inicio);
 extern void agregarATabla(int inicio);
 extern void liberarMemoria (int numeroDeProceso);
 //extern void bestFit(unsigned char * datosProc, int size);

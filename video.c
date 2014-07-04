@@ -90,3 +90,11 @@ void  printInt(int num){
         printCh(&resultado[i]);
     }
 }
+/*
+void reiniciarBuffer(){
+    indiceBuffer = 0;
+    for (int i = 0; i < 10; i++) {
+        kbd_buffer[i] = 0;
+    }
+}
+*/
