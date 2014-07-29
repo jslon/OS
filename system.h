@@ -11,11 +11,9 @@
 
 int banderaCons;        //Si está 0 = Consola, 1 = editor de texto.
 int banderaArch;        //Si está en 0 = archivo nuevo si esta en 1 es un archivo siendo modificado
-int tamanoDePagina;
-char * prompt;
-int numArchivo;
-
-//char *prompt = "admin@Balazos:";
+int tamanoDePagina;     //Tamaño de la pagina del archivo de texto 80x22
+char * prompt;          //prompt de la consola "root@BalazOS"
+int numArchivo;         //Numero del archivo con el que se trabaja
 
 
 //INTERRUPTS.C
@@ -68,8 +66,8 @@ extern void irq13();
 extern void irq14();
 extern void irq15();
 
-extern void loadIDT();
-extern void instalarInterrupciones();
+extern void loadIDT();                 
+extern void instalarInterrupciones();  
 struct idt;
 struct idtr;
 
